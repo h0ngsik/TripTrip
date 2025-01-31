@@ -22,5 +22,6 @@ TripTrip은 로그인 기능을 제공하고, 인증된 사용자만 게시글�
   - 비밀번호 변경
 
 ## 주요 화면
-![Group 2](https://github.com/user-attachments/assets/4505a704-9c63-4cff-8475-c1f85890c129)
+![Group 3](https://github.com/user-attachments/assets/fc3cccf8-15d4-4b67-9db2-af2375c75960)
+
 

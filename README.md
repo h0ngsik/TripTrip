@@ -20,3 +20,7 @@ TripTrip은 로그인 기능을 제공하고, 인증된 사용자만 게시글�
   - 거래내역 조회
   - 포인트 사용내역 조회
   - 비밀번호 변경
+
+## 주요 화면
+![Group 2](https://github.com/user-attachments/assets/4505a704-9c63-4cff-8475-c1f85890c129)
+

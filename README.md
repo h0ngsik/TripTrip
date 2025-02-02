@@ -5,7 +5,7 @@ TripTrip은 로그인 기능을 제공하고, 인증된 사용자만 게시글�
 사용자는 숙박권을 등록하여 직접 구매/판매할 수 있고, 여행 관련 경험을 공유하는 커뮤니티 공간도 활용할 수 있습니다.
 
 ## 개발 환경
-`Next.js`, `Zustand`, `graphQL`, `Firebase`
+[![stackticon](https://firebasestorage.googleapis.com/v0/b/stackticon-81399.appspot.com/o/images%2F1738475305053?alt=media&token=0541c756-f786-4f6e-b616-cf2e1a699402)](https://github.com/msdio/stackticon)
 
 ## 주요 기능
 - **로그인 및 회원가입**

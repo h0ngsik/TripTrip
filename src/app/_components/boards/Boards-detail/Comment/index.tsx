@@ -23,7 +23,7 @@ const Comment = ({ comments }: ICommentInput) => {
             </div>
             <div className={styles.sideButtonContainer}>
               <button onClick={onClickEdit}>
-                <img src="/assets/edit.png" alt="댓글 편집 버튼 이미지" />
+                <img src="/assets/edit.svg" alt="댓글 편집 버튼 이미지" />
               </button>
               <button>
                 <img src="/assets/close.png" alt="댓글 삭제 버튼 이미지" />

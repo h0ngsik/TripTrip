@@ -40,7 +40,7 @@ export default function LayoutNavigation() {
             alt="로고 이미지"
             width={56}
             height={32}
-          ></Image>
+          />
           <div className={styles.navigationItemContainer}>
             {navigationItem.map((el, index) => (
               <span

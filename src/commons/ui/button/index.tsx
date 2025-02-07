@@ -99,8 +99,8 @@ export function Button({
 export function LoginButton() {
   return (
     <Link href="/login" className={styles.button__login}>
-      <span>로그인</span>
-      <RightArrowIcon />
+      <p>로그인</p>
+      <RightArrowIcon width={1.25} height={1.25} />
     </Link>
   );
 }

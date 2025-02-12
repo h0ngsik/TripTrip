@@ -1,5 +1,14 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 export default function Home() {
-  return (
-    <div>최상위 페이지입니다.</div>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/boards");
+  }, []);
+
+  return <></>;
 }

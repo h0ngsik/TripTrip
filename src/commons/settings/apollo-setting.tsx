@@ -32,7 +32,7 @@ export default function ApolloUploadSetting(props: IApolloUploadSetting) {
   }, []);
 
   const uploadLink = createUploadLink({
-    uri: "https://main-practice.codebootcamp.co.kr/graphql",
+    uri: process.env.NEXT_PUBLIC_BACKEND_API_URL,
     headers: { Authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });

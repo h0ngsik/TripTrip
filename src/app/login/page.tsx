@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./styles.module.css";
 import { LoginMainImage } from "@/commons/ui/icon";
 import SignUp from "@/app/_components/signUp";

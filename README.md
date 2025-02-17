@@ -24,4 +24,8 @@ TripTrip은 로그인 기능을 제공하고, 인증된 사용자만 게시글�
 ## 주요 화면
 ![Group 3](https://github.com/user-attachments/assets/fc3cccf8-15d4-4b67-9db2-af2375c75960)
 
-
+## 프로젝트를 통한 경험
+- 회원가입 및 로그인 시 React Hook Form과 Zod를 사용하여 폼 상태 관리 및 검증 자동화
+- 안전한 사용자 인증을 위해 RefreshToken을 활용한 인증 구현
+- 샬로우 라우팅을 활용한 검색 기능을 구현하여 URL 변경 없이 결과만 갱신해 사용자 경험 향상
+- 포트원 결제 API를 연동하여 플랫폼 내 포인트 충전 기능 구현

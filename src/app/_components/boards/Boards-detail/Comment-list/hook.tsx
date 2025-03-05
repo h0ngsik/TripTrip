@@ -22,12 +22,11 @@ const useCommentList = ({ toggleHasMoreScroll }: IUseCommentListProps) => {
         boardId: String(params.boardId),
       },
 
-      // 이 오류는 무엇일까요? 하하하
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult.fetchBoardComments?.length) {
           // 데이터 불러올 수 없으면 false로 바꿈.
           toggleHasMoreScroll();
-          return;
+          return prev;
         }
 
         return {

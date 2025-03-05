@@ -2,7 +2,7 @@
 import classNames from "classnames";
 import styles from "./styles.module.css";
 
-interface IListProps<I> {
+interface IListProps<I extends Record<string, any>> {
   columns: IListHeader[];
   items: I[];
   mainColumns: number;
@@ -13,7 +13,7 @@ interface IListHeader {
   key: string;
 }
 
-export default function List<I>({
+export default function List<I extends Record<string, any>>({
   columns,
   items,
   mainColumns,

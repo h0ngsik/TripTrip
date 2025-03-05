@@ -1,12 +1,13 @@
-import { DatePicker } from "antd";
-import locale from "antd/es/date-picker/locale/ko_KR";
+"use client";
+import { useEffect } from "react";
+import { DocumentData } from "firebase/firestore";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
-import { useEffect } from "react";
+import { DatePicker } from "antd";
+import locale from "antd/es/date-picker/locale/ko_KR";
+import useMyPlanWrite from "./hook";
 import { CollectionList } from "@/commons/apis/firebase";
 import styles from "./styles.module.css";
-import useMyPlanWrite from "./hook";
-import { DocumentData } from "firebase/firestore";
 
 interface IMyPlanWriteProps {
   isEdit: boolean;

@@ -1,7 +1,9 @@
+"use client";
+
+import { useEffect } from "react";
 import { useAccessTokenStore } from "@/app/_store/accessToken/store";
 import { useInitTokenLoadStore } from "@/app/_store/initTokenLoad-store";
 import { NavigationPaths, useNavigate } from "@/utils/navigate";
-import { useEffect } from "react";
 
 export const withLoginCheck =
   (Component: () => JSX.Element) =>

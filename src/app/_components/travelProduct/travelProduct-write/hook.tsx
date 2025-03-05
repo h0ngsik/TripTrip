@@ -217,6 +217,7 @@ export default function useTravelProductWrite({
         const geocoder = new window.kakao.maps.services.Geocoder();
         const address = methods.getValues("address");
 
+        // @ts-ignore
         geocoder.addressSearch(address, (result, status) => {
           if (status === window.kakao.maps.services.Status.OK) {
             // 상태 업데이트

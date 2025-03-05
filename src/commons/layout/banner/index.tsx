@@ -14,11 +14,7 @@ export default function LayoutBanner() {
         // onSlideChange={() => console.log("slide change")}
         // onSwiper={(swiper) => console.log(swiper)}
         autoplay={{ delay: 3500, pauseOnMouseEnter: true }}
-        style={{
-          "--swiper-pagination-color": "#FFFFFF",
-          "--swiper-pagination-bullet-inactive-color": "#FFFFFF",
-          "--swiper-pagination-bullet-inactive-opacity": "0.8",
-        }}
+        className={styles.swiper}
       >
         <SwiperSlide>
           <Image

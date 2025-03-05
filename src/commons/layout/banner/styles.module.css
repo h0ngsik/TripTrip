@@ -2,3 +2,9 @@
   width: 100%;
   height: 32rem;
 }
+
+.swiper {
+  --swiper-pagination-color: #ffffff;
+  --swiper-pagination-bullet-inactive-color: #ffffff;
+  --swiper-pagination-bullet-inactive-opacity: 0.8;
+}

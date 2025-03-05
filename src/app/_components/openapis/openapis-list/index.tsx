@@ -1,9 +1,11 @@
-import Image from "next/image";
-import styles from "./styles.module.css";
-import { Card } from "antd";
+"use client";
+
 import { useEffect, useState } from "react";
-import Meta from "antd/es/card/Meta";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Image from "next/image";
+import { Card } from "antd";
+import Meta from "antd/es/card/Meta";
+import styles from "./styles.module.css";
 
 const locationList: string[] = ["서울", "부산", "제주", "경기", "인천", "강원"];
 

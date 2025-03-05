@@ -32,7 +32,8 @@ export default function ApolloUploadSetting(props: IApolloUploadSetting) {
   }, []);
 
   const uploadLink = createUploadLink({
-    uri: process.env.NEXT_PUBLIC_BACKEND_API_URL,
+    // uri: process.env.NEXT_PUBLIC_BACKEND_API_URL,
+    uri: "/api/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });

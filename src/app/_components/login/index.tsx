@@ -1,76 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
-import styles from "./styles.module.css";
-import { InputForm } from "@/app/_components/commons/input";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { InputForm } from "@/app/_components/commons/input";
 import { ILoginSchema, loginSchema } from "./schema";
-import { useMutation, useQuery } from "@apollo/client";
-import {
-  FetchUserLoggedInDocument,
-  LoginUserDocument,
-} from "@/commons/gql/graphql";
-import { NavigationPaths, useNavigate } from "@/utils/navigate";
-import { useAccessTokenStore } from "@/app/_store/accessToken/store";
 import { LogoIcon } from "@/commons/ui/icon";
 import { Button, ButtonSize, ButtonVariant } from "@/commons/ui/button";
-import { useUserInfo } from "@/app/_store/userInfo-store";
+import useLogin from "./hooks";
+import styles from "./styles.module.css";
 
 interface ILoginProps {
   handleSignUp: () => void;
 }
 
 export default function Login({ handleSignUp }: ILoginProps) {
-  const navigate = useNavigate();
-
-  const { data: userInfo } = useQuery(FetchUserLoggedInDocument);
-  const [loginUser] = useMutation(LoginUserDocument);
-
-  const { setAccessToken } = useAccessTokenStore();
-  const { setUserInfo } = useUserInfo();
-
+  const { isLoginFailed, onClickLogin } = useLogin();
   const methods = useForm<ILoginSchema>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
   });
 
-  const errorMessages = methods.formState.errors;
-  console.log(errorMessages.password?.message);
-
-  const [isLoginFailed, setIsLoginFailed] = useState(false);
-
-  const onClickLogin = async (data: ILoginSchema) => {
-    console.log("로그인 버튼을 눌렀습니다.");
-    try {
-      const result = await loginUser({
-        variables: {
-          email: data.email,
-          password: data.password,
-        },
-      });
-      const accessToken = result.data?.loginUser.accessToken;
-      console.log(accessToken);
-
-      if (!accessToken) {
-        setIsLoginFailed(true);
-        alert("로그인을 실패했습니다.");
-        return;
-      }
-
-      setAccessToken(accessToken);
-
-      setIsLoginFailed(false);
-
-      console.log("로그인 시 회원 정보입니다.", userInfo?.fetchUserLoggedIn);
-      if (userInfo?.fetchUserLoggedIn) setUserInfo(userInfo.fetchUserLoggedIn);
-      navigate(NavigationPaths.boards);
-
-      alert("로그인 성공!");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const errorMessages = methods.formState.errors;
 
   return (
     <FormProvider {...methods}>

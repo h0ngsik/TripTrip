@@ -6,16 +6,14 @@ import { InputForm } from "@/app/_components/commons/input";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ILoginSchema, loginSchema } from "./schema";
-import { useMutation, useQuery } from "@apollo/client";
-import {
-  FetchUserLoggedInDocument,
-  LoginUserDocument,
-} from "@/commons/gql/graphql";
+import { useMutation } from "@apollo/client";
+import { LoginUserDocument } from "@/commons/gql/graphql";
 import { NavigationPaths, useNavigate } from "@/utils/navigate";
 import { useAccessTokenStore } from "@/app/_store/accessToken/store";
 import { LogoIcon } from "@/commons/ui/icon";
 import { Button, ButtonSize, ButtonVariant } from "@/commons/ui/button";
 import { useUserInfo } from "@/app/_store/userInfo-store";
+import useModal from "@/commons/ui/modal/hook";
 
 interface ILoginProps {
   handleSignUp: () => void;
@@ -23,12 +21,9 @@ interface ILoginProps {
 
 export default function Login({ handleSignUp }: ILoginProps) {
   const navigate = useNavigate();
-
-  const { data: userInfo } = useQuery(FetchUserLoggedInDocument);
   const [loginUser] = useMutation(LoginUserDocument);
 
   const { setAccessToken } = useAccessTokenStore();
-  const { setUserInfo } = useUserInfo();
 
   const methods = useForm<ILoginSchema>({
     resolver: zodResolver(loginSchema),
@@ -38,10 +33,15 @@ export default function Login({ handleSignUp }: ILoginProps) {
   const errorMessages = methods.formState.errors;
   console.log(errorMessages.password?.message);
 
+  const { showSuccessModal, showErrorModal } = useModal();
+
   const [isLoginFailed, setIsLoginFailed] = useState(false);
 
+  const handleLoginSuccess = () => {
+    navigate(NavigationPaths.boards);
+  };
+
   const onClickLogin = async (data: ILoginSchema) => {
-    console.log("로그인 버튼을 눌렀습니다.");
     try {
       const result = await loginUser({
         variables: {
@@ -50,25 +50,18 @@ export default function Login({ handleSignUp }: ILoginProps) {
         },
       });
       const accessToken = result.data?.loginUser.accessToken;
-      console.log(accessToken);
+      console.log(result.data);
 
       if (!accessToken) {
         setIsLoginFailed(true);
-        alert("로그인을 실패했습니다.");
-        return;
+        throw Error("로그인 토큰이 존재하지 않습니다.");
       }
-
       setAccessToken(accessToken);
-
       setIsLoginFailed(false);
 
-      console.log("로그인 시 회원 정보입니다.", userInfo?.fetchUserLoggedIn);
-      if (userInfo?.fetchUserLoggedIn) setUserInfo(userInfo.fetchUserLoggedIn);
-      navigate(NavigationPaths.boards);
-
-      alert("로그인 성공!");
+      showSuccessModal("로그인 완료되었습니다.", handleLoginSuccess);
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) showErrorModal("로그인 실패", error.message);
     }
   };
 

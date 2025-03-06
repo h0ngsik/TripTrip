@@ -1,68 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
-import styles from "./styles.module.css";
-import { InputForm } from "@/app/_components/commons/input";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { InputForm } from "@/app/_components/commons/input";
 import { ILoginSchema, loginSchema } from "./schema";
-import { useMutation } from "@apollo/client";
-import { LoginUserDocument } from "@/commons/gql/graphql";
-import { NavigationPaths, useNavigate } from "@/utils/navigate";
-import { useAccessTokenStore } from "@/app/_store/accessToken/store";
 import { LogoIcon } from "@/commons/ui/icon";
 import { Button, ButtonSize, ButtonVariant } from "@/commons/ui/button";
-import useModal from "@/commons/ui/modal/hook";
+import useLogin from "./hooks";
+import styles from "./styles.module.css";
 
 interface ILoginProps {
   handleSignUp: () => void;
 }
 
 export default function Login({ handleSignUp }: ILoginProps) {
-  const navigate = useNavigate();
-  const [loginUser] = useMutation(LoginUserDocument);
-
-  const { setAccessToken } = useAccessTokenStore();
-
+  const { isLoginFailed, onClickLogin } = useLogin();
   const methods = useForm<ILoginSchema>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
   });
 
-  const errorMessages = methods.formState.errors;
-  console.log(errorMessages.password?.message);
-
-  const { showSuccessModal, showErrorModal } = useModal();
-
-  const [isLoginFailed, setIsLoginFailed] = useState(false);
-
-  const handleLoginSuccess = () => {
-    navigate(NavigationPaths.boards);
-  };
-
-  const onClickLogin = async (data: ILoginSchema) => {
-    try {
-      const result = await loginUser({
-        variables: {
-          email: data.email,
-          password: data.password,
-        },
-      });
-      const accessToken = result.data?.loginUser.accessToken;
-      console.log(result.data);
-
-      if (!accessToken) {
-        setIsLoginFailed(true);
-        throw Error("로그인 토큰이 존재하지 않습니다.");
-      }
-      setAccessToken(accessToken);
-      setIsLoginFailed(false);
-
-      showSuccessModal("로그인 완료되었습니다.", handleLoginSuccess);
-    } catch (error) {
-      if (error instanceof Error) showErrorModal("로그인 실패", error.message);
-    }
-  };
+  // const errorMessages = methods.formState.errors;
 
   return (
     <FormProvider {...methods}>

@@ -12,7 +12,6 @@ import { NavigationPaths, useNavigate } from "@/utils/navigate";
 import { useAccessTokenStore } from "@/app/_store/accessToken/store";
 import { LogoIcon } from "@/commons/ui/icon";
 import { Button, ButtonSize, ButtonVariant } from "@/commons/ui/button";
-import { useUserInfo } from "@/app/_store/userInfo-store";
 import useModal from "@/commons/ui/modal/hook";
 
 interface ILoginProps {

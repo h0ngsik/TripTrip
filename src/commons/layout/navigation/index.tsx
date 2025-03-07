@@ -9,7 +9,12 @@ import { useQuery } from "@apollo/client";
 import { FetchUserLoggedInDocument } from "@/commons/gql/graphql";
 
 export default function LayoutNavigation() {
-  const navigationItem = ["트립토크", "숙박권 구매", "마이 페이지"];
+  const navigationItem = [
+    "트립토크",
+    "숙박권 구매",
+    "국내 축제 모음",
+    "마이 페이지",
+  ];
   const router = useRouter();
   const [selectedItem, setSelectedItem] = useState(0);
   const { accessToken } = useAccessTokenStore();
@@ -24,7 +29,8 @@ export default function LayoutNavigation() {
 
     if (id === 0) router.push("/boards");
     if (id === 1) router.push("/travelproduct");
-    if (id === 2) router.push("/mypage");
+    if (id === 2) router.push("/festivals");
+    if (id === 3) router.push("/mypage");
   };
 
   useEffect(() => {

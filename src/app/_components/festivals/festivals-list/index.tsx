@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Image from "next/image";
 import { Card } from "antd";
@@ -14,11 +14,7 @@ export default function FestivalsList() {
   const [pageNum, setPageNum] = useState(1);
   const [festivals, setFestivals] = useState<IFestival[]>([]);
   const [hasMore, setHasMore] = useState(true);
-
-  const initFestivals = async (page: number) => {
-    const result = await fetchFestivals(page);
-    setFestivals(result);
-  };
+  const [isFetching, setIsFetching] = useState(false); // ✅ 중복 호출 방지
 
   const fetchFestivals = async (page: number) => {
     const api = "http://apis.data.go.kr/B551011/KorService1";
@@ -26,47 +22,51 @@ export default function FestivalsList() {
     const key = process.env.NEXT_PUBLIC_API_KEY;
 
     try {
-      console.log(`fetch::: ${api}/searchFestival1?serviceKey=${key}${params}`);
       const response = await fetch(
         `${api}/searchFestival1?serviceKey=${key}${params}`
       );
       const responseJson = await response.json();
-      if (!numberOfFestivals)
-        setNumberOfFestivals(responseJson.response.body.totalCount);
 
-      setPageNum(responseJson.response.body.pageNo + 1);
+      if (!numberOfFestivals) {
+        setNumberOfFestivals(responseJson.response.body.totalCount);
+      }
+
       return responseJson.response.body.items.item;
     } catch (error) {
       console.log("오류가 발생했습니다.!!!!!");
       console.log(error);
+      return [];
     }
   };
 
-  const onScroll = async () => {
-    if (festivals === undefined) return;
+  // ✅ 스크롤할 때만 API 호출하도록 변경
+  const onScroll = useCallback(async () => {
+    if (!hasMore || isFetching) return; // 중복 호출 방지
+    setIsFetching(true); // ✅ 호출 중 상태 변경
 
-    const more = await fetchFestivals(pageNum);
+    const nextPage = pageNum + 1;
+    const more = await fetchFestivals(nextPage);
 
     if (!more.length) {
       setHasMore(false);
-      return;
+    } else {
+      setFestivals((prevFestivals) => [...prevFestivals, ...more]);
+      setPageNum(nextPage); // 성공적으로 데이터가 로드되면 페이지 증가
     }
 
-    setFestivals((prevFestivals) => [...prevFestivals, ...more]);
-    console.log("Fetch Festivals!!!!");
-  };
+    setIsFetching(false); // 호출 완료 후 상태 변경
+  }, [hasMore, isFetching, pageNum]);
 
-  const onError = () => {
-    console.log("스크롤 오류가 발생했습니다.");
-  };
-
+  // 초기 데이터 로드 (첫 페이지)
   useEffect(() => {
-    initFestivals(pageNum);
+    fetchFestivals(1).then((initialFestivals) => {
+      setFestivals(initialFestivals);
+    });
   }, []);
 
   return (
     <div className={styles.openApisListContainer}>
-      <header className={styles.headerContainer}>국내 행사 모음</header>
+      <header className={styles.headerContainer}>국내 축제 모음</header>
       <div className={styles.searchBardContainer}>
         <Image
           className={styles.searchIcon}
@@ -74,7 +74,7 @@ export default function FestivalsList() {
           alt="검색 아이콘"
           width={24}
           height={24}
-        ></Image>
+        />
         <input
           className={styles.searchInput}
           type="text"
@@ -97,7 +97,7 @@ export default function FestivalsList() {
         next={onScroll}
         hasMore={hasMore}
         loader={<h4>로딩중.....</h4>}
-        dataLength={numberOfFestivals}
+        dataLength={festivals.length}
       >
         <div className={styles.cardListContainer}>
           {festivals.map((el, index) => (
@@ -112,8 +112,7 @@ export default function FestivalsList() {
                   width={0}
                   height={0}
                   sizes="100vw"
-                  onError={onError}
-                ></Image>
+                />
               }
             >
               <Meta title={el.title} description={el.addr1} />

@@ -1,5 +1,5 @@
-import Festivals from "../_components/festivals/festivals";
+import FestivalsList from "../_components/festivals/festivals-list";
 
 export default function FestivalsPage() {
-  return <Festivals />;
+  return <FestivalsList />;
 }

@@ -9,7 +9,7 @@ import styles from "./styles.module.css";
 
 const locationList: string[] = ["서울", "부산", "제주", "경기", "인천", "강원"];
 
-export default function Festivals() {
+export default function FestivalsList() {
   const [numberOfFestivals, setNumberOfFestivals] = useState(1);
   const [pageNum, setPageNum] = useState(1);
   const [festivals, setFestivals] = useState<IFestival[]>([]);

@@ -9,8 +9,7 @@ import styles from "./styles.module.css";
 
 const locationList: string[] = ["서울", "부산", "제주", "경기", "인천", "강원"];
 
-export default function OpenApisList() {
-  console.log("컴포넌트가 생성됩니다.");
+export default function Festivals() {
   const [numberOfFestivals, setNumberOfFestivals] = useState(1);
   const [pageNum, setPageNum] = useState(1);
   const [festivals, setFestivals] = useState<IFestival[]>([]);
@@ -34,6 +33,7 @@ export default function OpenApisList() {
       const responseJson = await response.json();
       if (!numberOfFestivals)
         setNumberOfFestivals(responseJson.response.body.totalCount);
+
       setPageNum(responseJson.response.body.pageNo + 1);
       return responseJson.response.body.items.item;
     } catch (error) {

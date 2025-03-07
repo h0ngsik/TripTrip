@@ -1,34 +1,43 @@
 # TripTrip ✈️
-TripTrip은 Next.js를 기반으로 개발한 여행 관련 플랫폼입니다.
+TripTrip은 여행 경험 공유, 숙박권 거래, 국내 축제 정보 제공 기능을 갖춘 여행 플랫폼입니다.
 
-TripTrip은 로그인 기능을 제공하고, 인증된 사용자만 게시글을 작성할 수 있습니다.
-사용자는 숙박권을 등록하여 직접 구매/판매할 수 있고, 여행 관련 경험을 공유하는 커뮤니티 공간도 활용할 수 있습니다.
+사용자는 여행 후기를 공유하고, 숙박권을 사고팔며, 전국의 다양한 축제를 한눈에 확인할 수 있습니다.
 
-## 개발 환경
-**언어**: JavaScript, TypeScript
+## 🔗 배포 링크
+[https://trip-trip-five.vercel.app](https://trip-trip-five.vercel.app)
+## ✨ 주요 기능
 
-**프레임워크**: Next.js
+### 🔑 로그인 및 회원가입
+- 이메일 회원가입 및 로그인
 
-**상태 관리**: Apollo Client, Zustand
+### 📝 여행 경험 공유 커뮤니티
+- 게시글 작성, 조회, 수정, 삭제
+- 키워드 및 작성 날짜를 활용한 게시글 검색
 
-**API**: GraphQL
+### 🏨 숙박권 거래
+- 플랫폼 내 포인트 충전을 통한 **숙박권 구매 및 판매**
+- 숙박권 거래 게시글 작성, 조회, 수정, 삭제
 
-## 주요 기능
-- **로그인 및 회원가입**
-- **여행 관련 경험 공유 커뮤니티 제공**
-  - 게시글 작성/조회/수정/삭제
-  - 게시글 검색(키워드 및 작성 날짜를 통해 검색)
-- **숙박권 구매 및 판매**
-  - 플랫폼 내 포인트 충전을 통해, 숙박권 구매 및 판매
-  - 숙박권 구매 작성/조회/수정/삭제
-- **국내 축제 목록 조회**
-- **마이페이지**
-  - 거래내역 조회
-  - 포인트 사용내역 조회
-  - 비밀번호 변경
+### 🎉 국내 축제 정보 조회
+- 전국 주요 축제 목록 확인
 
-## 주요 화면
+### 🔖 마이페이지
+- 개인 거래 내역 조회
+- 포인트 충전 및 사용 내역 조회
+- 비밀번호 변경
+
+## 🖥 스크린샷
 ![Group 3](https://github.com/user-attachments/assets/fc3cccf8-15d4-4b67-9db2-af2375c75960)
+
+## 🛠 기술 스택
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=white)  
+![GraphQL](https://img.shields.io/badge/GraphQL-E10098?logo=graphql&logoColor=white)
+![Apollo Client](https://img.shields.io/badge/Apollo%20Client-311C87?logo=apollographql&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000?logo=vercel&logoColor=white)
+
+
 
 ## 프로젝트를 통한 경험
 - 회원가입 및 로그인 시 React Hook Form과 Zod를 사용하여 폼 상태 관리 및 검증 자동화

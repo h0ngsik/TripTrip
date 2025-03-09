@@ -6,7 +6,7 @@ import { InputForm } from "@/app/_components/commons/input";
 import { ILoginSchema, loginSchema } from "./schema";
 import { LogoIcon } from "@/commons/ui/icon";
 import { Button, ButtonSize, ButtonVariant } from "@/commons/ui/button";
-import useLogin from "./hooks";
+import useLogin from "./hook";
 import styles from "./styles.module.css";
 
 interface ILoginProps {

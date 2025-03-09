@@ -27,8 +27,6 @@ export default function FestivalsList() {
 
       return data.response.body.items.item;
     } catch (error) {
-      console.log("오류가 발생했습니다.!!!!!");
-      console.log(error);
       setHasMore(false);
       return [];
     }

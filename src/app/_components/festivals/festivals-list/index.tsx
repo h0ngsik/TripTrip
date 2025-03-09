@@ -17,21 +17,15 @@ export default function FestivalsList() {
   const [isFetching, setIsFetching] = useState(false); // ✅ 중복 호출 방지
 
   const fetchFestivals = async (page: number) => {
-    const api = "http://apis.data.go.kr/B551011/KorService1";
-    const params = `&numOfRows=12&pageNo=${page}&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=A&eventStartDate=20241017`;
-    const key = process.env.NEXT_PUBLIC_API_KEY;
-
     try {
-      const response = await fetch(
-        `${api}/searchFestival1?serviceKey=${key}${params}`
-      );
-      const responseJson = await response.json();
+      const res = await fetch(`/api/festivals?page=${page}`);
+      const data = await res.json();
 
       if (!numberOfFestivals) {
-        setNumberOfFestivals(responseJson.response.body.totalCount);
+        setNumberOfFestivals(data.response.body.totalCount);
       }
 
-      return responseJson.response.body.items.item;
+      return data.response.body.items.item;
     } catch (error) {
       console.log("오류가 발생했습니다.!!!!!");
       console.log(error);

@@ -7,7 +7,7 @@ import { Card } from "antd";
 import Meta from "antd/es/card/Meta";
 import styles from "./styles.module.css";
 
-const locationList: string[] = ["서울", "부산", "제주", "경기", "인천", "강원"];
+// const locationList: string[] = ["서울", "부산", "제주", "경기", "인천", "강원"];
 
 export default function FestivalsList() {
   const [numberOfFestivals, setNumberOfFestivals] = useState(1);
@@ -75,7 +75,7 @@ export default function FestivalsList() {
           placeholder="행사명 또는 지역명을 입력해주세요."
         />
       </div>
-      <nav>
+      {/* <nav>
         <ul className={styles.locationContainer}>
           {locationList.map((el, index) => (
             <li
@@ -86,7 +86,7 @@ export default function FestivalsList() {
             </li>
           ))}
         </ul>
-      </nav>
+      </nav> */}
       <InfiniteScroll
         next={onScroll}
         hasMore={hasMore}

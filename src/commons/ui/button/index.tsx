@@ -1,13 +1,12 @@
 "use client";
 
-import React, { MouseEvent } from "react";
+import React, { ButtonHTMLAttributes, MouseEvent } from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 import { RightArrowIcon } from "../icon";
 import Link from "next/link";
 
-interface IButtonBaseProps {
-  className: string;
+interface IButtonBaseProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   disabled?: boolean;
   onClick?:
@@ -67,7 +66,8 @@ export function Button({
   disabled = false,
   leadingIcon,
   trailingIcon,
-}: IButtonProps) {
+  ...rest
+}: IButtonBaseProps) {
   const getClassNames = () => {
     return classNames(`${styles.button}`, {
       [styles.button__large]: size === ButtonSize.large,
@@ -83,6 +83,7 @@ export function Button({
 
   return (
     <ButtonBase
+      {...rest}
       variant={variant}
       style={style}
       size={size}

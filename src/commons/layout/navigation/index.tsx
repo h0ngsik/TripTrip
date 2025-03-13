@@ -68,21 +68,16 @@ export default function LayoutNavigation() {
         {isLoggedIn ? (
           <div className={styles.profileContainer}>
             <button className={styles.profileButton}>
-              {data?.fetchUserLoggedIn.picture ? (
-                <Image
-                  src={`https://storage.googleapis.com/${data.fetchUserLoggedIn.picture}`}
-                  alt="프로필 이미지"
-                  width={25}
-                  height={25}
-                ></Image>
-              ) : (
-                <Image
-                  src="/assets/profile_icon.png"
-                  alt="프로필 이미지"
-                  width={25}
-                  height={25}
-                ></Image>
-              )}
+              <Image
+                src={
+                  data?.fetchUserLoggedIn.picture
+                    ? `https://storage.googleapis.com/${data.fetchUserLoggedIn.picture}`
+                    : "/assets/profile_icon.png"
+                }
+                alt="프로필 이미지"
+                width={25}
+                height={25}
+              ></Image>
             </button>
             <button className={styles.arrowDownButton}>
               <Image

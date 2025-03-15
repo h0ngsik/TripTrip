@@ -37,8 +37,6 @@ TripTrip은 여행 경험 공유, 숙박권 거래, 국내 축제 정보 제공 
 ![Apollo Client](https://img.shields.io/badge/Apollo%20Client-311C87?logo=apollographql&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000?logo=vercel&logoColor=white)
 
-
-
 ## 프로젝트를 통한 경험
 - 회원가입 및 로그인 시 React Hook Form과 Zod를 사용하여 폼 상태 관리 및 검증 자동화
 - 안전한 사용자 인증을 위해 RefreshToken을 활용한 인증 구현
@@ -47,3 +45,5 @@ TripTrip은 여행 경험 공유, 숙박권 거래, 국내 축제 정보 제공 
 
 ## 트러블 슈팅
 - [스크롤 시 API 호출이 안 되는 문제 & 중복 호출 발생](https://github.com/h0ngsik/TripTrip/pull/7#issue-2902228148)
+
+## 느낀점
